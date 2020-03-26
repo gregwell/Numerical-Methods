@@ -6,61 +6,38 @@
 
 using namespace std;
 
-//double interpolate(Data f[], int xi, int n)
-//{
-//	double result = 0; // Initialize result 
-//
-//	for (int i = 0; i < n; i++)
-//	{
-//		// Compute individual terms of above formula 
-//		double term = f[i].y;
-//		for (int j = 0; j < n; j++)
-//		{
-//			if (j != i)
-//				term = term * (xi - f[j].x) / double(f[i].x - f[j].x);
-//		}
-//
-//		// Add current term to result 
-//		result += term;
-//	}
-//
-//	return result;
-//}
+
 
 void Lagrange::interpolation() {
 
 	ifstream fin("lagrange.txt");
-	fin >> n;
+	fin >> n; //the first line in the file is the number of pairs
 
 	x = new double[n];
 	y = new double[n];
-	cout << "3"<< n << endl;
+	cout << "Reading " << n << " data pairs from file.." << endl;
 
 	for (i = 0; i < n; i++) {
-		fin >> x[i] >> y[i];
-		cout << "to jes x od i" << x[i] << endl;
-		cout << "to jes y od i" << y[i] << endl;
+		fin >> x[i] >> y[i]; //file format: each line: "x[i] y[i]"
+		cout << "x=  "<< x[i] <<", y=" << y[i] << endl;
 	}
-	cout << "4" << endl;
+
 	fin.close();
 
-	cout << "\n Enter value at which interpolation is to be carried out: ";
-	cin >> z;
+	cout << "Enter value..  ";
+	cin >> v;
 
 	sum = 0.0;
 
 	for (i = 0; i < n; i++) {
-		mult = 1.0;
-		for (j = 0; j < n; j++) {
+		polynomial = 1.0;
+		for (j = 0; j < n; j++) { //li(x)
 			if (j != i) {
-				mult *= (z - x[j]) / (x[i] - x[j]);
+				polynomial *= (v - x[j]) / (x[i] - x[j]);
 			}
-		}
-		sum += mult * y[i];
+		} //the sum of found polynomials multiplied by corresponding values
+		sum += polynomial * y[i];
 	}
 	cout << "\nInterpolated value = " << sum << endl;
 }
 
-void huj() {
-	cout << "huj!!!!!" << endl;
-}

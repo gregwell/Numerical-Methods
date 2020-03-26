@@ -151,12 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GaussElimination.h" />
     <ClInclude Include="LagrangeInterpolation.h" />
+    <ClInclude Include="NewtonInterpolation.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GaussElimination.cpp" />
     <ClCompile Include="LagrangeInterpolation.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewtonInterpolation.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

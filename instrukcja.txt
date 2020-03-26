@@ -1,0 +1,13 @@
+W Visual studio można uruchomić cały program z pliku .sln
+
+Plik z danymi to newton.txt
+Pierwsza linijka pliku to liczba par.
+Kolejne linijki to pary w formacie "x y"
+
+Po uruchomieniu programu wystarczy podać liczbę do interpolacji.
+Pliki źrodłowe:
+main.cpp
+NewtonInterpolation.cpp
+NewtonInterpolation.h
+
+Kontakt: grzegorzstudzinski@hotmail.com
