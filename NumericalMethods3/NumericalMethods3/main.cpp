@@ -9,7 +9,8 @@ int main()
 {
 
 
-
+	Gauss test;
+	test.gaussElimination();
 
 
 	return 0;
