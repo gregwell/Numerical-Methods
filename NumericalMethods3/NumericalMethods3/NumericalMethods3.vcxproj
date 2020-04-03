@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GaussElimination.h" />
+    <ClInclude Include="Jacobi.h" />
     <ClInclude Include="LagrangeInterpolation.h" />
     <ClInclude Include="NewtonInterpolation.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GaussElimination.cpp" />
+    <ClCompile Include="Jacobi.cpp" />
     <ClCompile Include="LagrangeInterpolation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NewtonInterpolation.cpp" />

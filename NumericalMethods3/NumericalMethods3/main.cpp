@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include <iostream>
-#include "GaussElimination.h"
+#include "Jacobi.h"
 #include <fstream>
 
 using namespace std;
@@ -9,8 +9,8 @@ int main()
 {
 
 
-	Gauss test;
-	test.gaussElimination();
+	Jacobi test;
+	test.Calculate();
 
 
 	return 0;
