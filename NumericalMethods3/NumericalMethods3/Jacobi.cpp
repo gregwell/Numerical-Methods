@@ -2,9 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include "Jacobi.h"
+#include "MatrixOperations.h"
 
 
 using namespace std;
+
 
 void Jacobi::Calculate() {
 
@@ -12,7 +14,7 @@ void Jacobi::Calculate() {
 	ifstream fin("jacobi.txt");
 	fin >> n; //number of equations
 
-
+	
 	a = new double*[n];
 	for (int i = 0; i < n; ++i)
 		a[i] = new double[n + 1];
@@ -30,68 +32,96 @@ void Jacobi::Calculate() {
 
 	fin >> ilimit; //number of iterations
 
-	
+	b = new double[n];
+	for (int i = 0; i < n; i++) {
+		b[i] = a[i][n];
+		cout << b[i] <<" ";
+	}
+
+	d = new double*[n];
+	l = new double*[n];
+	u = new double*[n];
+
+
+	for (int i = 0; i < n; ++i) {
+	d[i] = new double[n];
+	l[i] = new double[n];
+	u[i] = new double[n];
+}
+
+for (int i = 0; i < n; i++) {
+	for (int j = 0; j < n; j++) {
+		d[i][j] = 0.0;
+		l[i][j] = 0.0;
+		u[i][j] = 0.0;
+	}
+}
+
+//1.2
+
+	//D
+for (int i = 0; i < n; i++) {
+	for (int j = 0; j < n; j++) {
+		d[i][i] = a[i][i];
+	}
+}
+
+//L
+for (int i = 1; i < n; i++) {
+	for (int j = 0; j < i; j++) {
+		if (a[i][j] != 0) l[i][j] = -a[i][j];
+	}
+}
+
+
+//U
+int temp = 0;
+for (int i = 0; i < n  ; i++) {
+	for (int j = n-1; j >temp ; j--) {
+		if (a[i][j] != 0.0) u[i][j] = -a[i][j];
+	}
+	temp++;
+}
+
+
+
+
+
+
+	//Read matrices:
+
+	cout << "The matrix D\n";
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			d[i][j] = 0;
-			l[i][j] = 0;
+			
+			if (j > n - 1) cout << "| ";
+			cout << d[i][j] << "   ";
 		}
+		cout << "\n";
 	}
 
-
-
-	//1.2
-
-
-		//D
+	cout << "The matrix L\n";
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			d[i][i] = a[i][i];
+			
+			if (j > n - 1) cout << "| ";
+			cout << l[i][j] << "   ";
 		}
+		cout << "\n";
 	}
 
-	//L
-	for (int i = 1; i < n + 1; i++) {
-		for (int j = 0; j <= i; j++) {
-
-			//once for i=1 (j=0)
-			l[i][j] = -a[i][j];
-			//l[1][0] = a[1][0];
-
-			//twice for i=2 (j=0,1)
-			l[i][j] = -a[i][j];
-			//l[1][0] = a[1][0];
-			//l[1][1] = a[1][1];
-
-			//twice for i=3 (j=0,1,2)
-			l[i][j] = -a[i][j];
-			//l[2][0] = a[2][0];
-			//l[2][1] = a[2][1];
-			//l[2][2] = a[2][3];
-
+	cout << "The matrix U\n";
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			
+			if (j > n - 1) cout << "| ";
+			cout << u[i][j] << "   ";
 		}
+		cout << "\n";
 	}
 
-	//U
-	for (int i = 0; i < n ; i++) {
-		for (int j = 0; j <= i; j++) {
 
-			//once for i=1 (j=0)
-			l[i][j] = -a[i][j];
-			//l[1][0] = a[1][0];
-
-			//twice for i=2 (j=0,1)
-			l[i][j] = -a[i][j];
-			//l[1][0] = a[1][0];
-			//l[1][1] = a[1][1];
-
-			//twice for i=3 (j=0,1,2)
-			l[i][j] = -a[i][j];
-			//l[2][0] = a[2][0];
-			//l[2][1] = a[2][1];
-			//l[2][2] = a[2][3];
-
-		}
-	}
 
 }
+
+
