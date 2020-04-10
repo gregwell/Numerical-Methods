@@ -16,7 +16,7 @@ void Jacobi::Calculate() {
 
 	
 	a = new double*[n];
-	for (int i = 0; i < n; ++i)
+	for (int i = 0; i < n; i++)
 		a[i] = new double[n + 1];
 
 
@@ -33,17 +33,44 @@ void Jacobi::Calculate() {
 	fin >> ilimit; //number of iterations
 
 	b = new double[n];
-	x = new double[n];
 	for (int i = 0; i < n; i++) {
-		b[i] = a[i][n];
-		x[i] = 0.0;
-		cout << b[i] <<" ";
+		b[i] = a[i][n];   //ok
+	
+		//cout << b[i] <<" ";
 	}
+
+	double diagonal;
+	double others;
+	int test1=0;
+	int test2=0;
+
+	for (int i = 0; i < n; i++) {
+		others = 0;
+		for (int j = 0; j < n; j++) {
+
+			if (i == j) diagonal = a[i][j];
+			else others += a[i][j];
+			
+		}
+		if (abs(diagonal) >= abs(others)) test1++;
+		if (diagonal > others) test2++;
+		
+	}
+	if (test1 == n && test2 > 0) {
+		cout << "Matrix is diagonally dominant." << endl;
+	}
+	else {
+		cout << "Matrix is not diagonally dominant. Use another matrix." << endl;
+		return;
+	}
+
+
 
 	d = new double*[n];
 	d_inv = new double*[n];
 	l = new double*[n];
 	u = new double*[n];
+	m = new double*[n];
 
 
 	for (int i = 0; i < n; ++i) {
@@ -51,6 +78,7 @@ void Jacobi::Calculate() {
 	d_inv[i] = new double[n];
 	l[i] = new double[n];
 	u[i] = new double[n];
+	m[i] = new double[n];
 	}
 
 for (int i = 0; i < n; i++) {
@@ -61,8 +89,6 @@ for (int i = 0; i < n; i++) {
 		u[i][j] = 0.0;
 	}
 }
-
-
 
 //1.2
 
@@ -77,7 +103,7 @@ for (int i = 0; i < n; i++) {
 //L
 for (int i = 1; i < n; i++) {
 	for (int j = 0; j < i; j++) {
-		if (a[i][j] != 0) l[i][j] = -a[i][j];
+		if (a[i][j] != 0) l[i][j] = a[i][j]; 
 	}
 }
 
@@ -86,9 +112,18 @@ for (int i = 1; i < n; i++) {
 int temp = 0;
 for (int i = 0; i < n  ; i++) {
 	for (int j = n-1; j >temp ; j--) {
-		if (a[i][j] != 0.0) u[i][j] = -a[i][j];
+		if (a[i][j] != 0.0) u[i][j] = a[i][j];
 	}
 	temp++;
+}
+
+// Matrix m (minus )
+for (int i = 0; i < n; i++) {
+	for (int j = 0; j < n; j++) {
+		if (i == j) m[i][j] = -1;
+		else m[i][j] = 0;
+		
+	}
 }
 
 
@@ -133,35 +168,28 @@ for (int i = 0; i < n  ; i++) {
 		cout << "\n";
 	}
 
-	double** x2 = new double*[ilimit+1];
+	x = new double*[ilimit+1];
 	for (int i = 0; i < ilimit; i++) {
-		x2[i] = new double[n];
+		x[i] = new double[n];
 	}
 	for (int i = 0; i < ilimit; i++) {
 		for (int j = 0; j < n; j++) {
-			x2[i][j] = 0;
+			x[i][j] = 0;
 		}
 	}
 
 	for (int i = 1; i < ilimit+1; i++) {
-	//	x2[i] = sumVECTOR(multiplySQplusVECTOR(d_inv, multiplySQplusVECTOR(sumSQ(d, l, n), x2[i - 1],n),n),multiplySQplusVECTOR(d_inv, b, n),n) ;
 
 		
-		x2[i] = sumVECTOR(multiplySQplusVECTOR(multiplySQ(d_inv, sumSQ(l, u, n), n), x2[i-1], n), multiplySQplusVECTOR(d, b, n), n);
+		x[i] = sumVECTOR(multiplySQplusVECTOR(multiplySQ(multiplySQ(d_inv, m,n), sumSQ(l, u, n), n), x[i-1], n), multiplySQplusVECTOR(d_inv, b, n), n);
 
-
-		//multiplySQplusVECTOR(multiplySQ(d_inv, sumSQ(l, u, n), n), x2[i - 1], n);
-		//multiplySQ(d_inv, sumSQ(l, u, n), n);
-		//multiplySQplusVECTOR(l, b, n);
-
-		//multiplySQplusVECTOR(d, b, n);
 	}
 
 	
 	for (int i = 0; i < ilimit; i++) {
 		cout << "Iteration no " << i + 1 << endl << "Solution: ";
 		for (int j = 0; j < n; j++) {
-			cout << x2[i][j] << " ";
+			cout << x[i][j] << " ";
 		}
 		cout << endl << endl;
 	}

@@ -14,7 +14,8 @@ private:
 	double **d_inv;
 	double **l;
 	double **u;
-	double *x;
+	double **m;
+	double** x;
 
 public:
 	void Calculate();
