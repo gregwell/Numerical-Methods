@@ -3,7 +3,7 @@
 
 using namespace std;
 
-float** multiplySQ(float **m1, float **m2, int n);
-float*  multiplySQplusVECTOR(float** m1, float* m2, int n);
-float** sumSQ(float** m1, float** m2, int n);
-float*  sumVECTOR(float* m1, float* m2, int n);
+double** multiplySQ(double **m1, double **m2, int n);
+double*  multiplySQplusVECTOR(double** m1, double* m2, int n);
+double** sumSQ(double** m1, double** m2, int n);
+double*  sumVECTOR(double* m1, double* m2, int n);

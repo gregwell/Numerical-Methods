@@ -11,6 +11,7 @@ private:
 	double **a;
 	double *b;
 	double **d;
+	double **d_inv;
 	double **l;
 	double **u;
 	double *x;
