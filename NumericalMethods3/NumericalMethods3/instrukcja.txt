@@ -1,5 +1,0 @@
-Plik z danymi to newton.txt
-Pierwsza linijka pliku to liczba par.
-Kolejne linijki to pary w formacie "x y"
-
-Po uruchomieniu programu wystarczy podać liczbę do interpolacji.

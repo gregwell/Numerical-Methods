@@ -11,3 +11,4 @@ main.cpp
 Jacobi.cpp
 Jacobi.h
 MatrixOperations.h
+MatrixOperations.cpp

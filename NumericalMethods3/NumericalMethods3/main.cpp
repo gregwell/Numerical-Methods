@@ -1,21 +1,16 @@
 ﻿#include "pch.h"
 #include <iostream>
-#include "Jacobi.h"
-#include <fstream>
-#include <iomanip>
-#include <math.h>
+#include <cmath>
+#include "Bisection.h"
 
 using namespace std;
 
+
 int main()
 {
+	f3();
 
-
-	Jacobi test;
-	test.Calculate();
-
-
+	system("pause");
 	return 0;
-
 }
 
