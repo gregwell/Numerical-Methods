@@ -1,15 +1,14 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include <cmath>
-#include "Bisection.h"
+#include "NewtonMethod.h"
 
 using namespace std;
 
 
 int main()
 {
-	f3();
-
+	findRoot(1.8,0.001);
 	system("pause");
 	return 0;
 }
