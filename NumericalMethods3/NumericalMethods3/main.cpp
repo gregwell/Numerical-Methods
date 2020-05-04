@@ -8,7 +8,8 @@ using namespace std;
 
 int main()
 {
-	findRoot(1.8,0.001);
+	findRootNR(4);
+
 	system("pause");
 	return 0;
 }
