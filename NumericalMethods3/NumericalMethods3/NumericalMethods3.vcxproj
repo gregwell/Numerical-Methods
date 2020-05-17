@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Bisection.h" />
     <ClInclude Include="GaussElimination.h" />
+    <ClInclude Include="Integration.h" />
     <ClInclude Include="Jacobi.h" />
     <ClInclude Include="LagrangeInterpolation.h" />
     <ClInclude Include="MatrixOperations.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="Bisection.cpp" />
     <ClCompile Include="GaussElimination.cpp" />
+    <ClCompile Include="Integration.cpp" />
     <ClCompile Include="Jacobi.cpp" />
     <ClCompile Include="LagrangeInterpolation.cpp" />
     <ClCompile Include="main.cpp" />

@@ -1,14 +1,14 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include <cmath>
-#include "NewtonMethod.h"
+#include "Integration.h"
 
 using namespace std;
 
 
 int main()
 {
-	findRootNR(4);
+	RiemannSum(5, 7, 10);
 
 	system("pause");
 	return 0;
