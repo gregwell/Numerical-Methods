@@ -43,6 +43,7 @@ void func4_formula() {
 }
 
 
+
 //a - integration start, b-integration end, n- no of intervals
 void RiemannSum(double a, double b, double n) 
 {
@@ -55,6 +56,7 @@ void RiemannSum(double a, double b, double n)
 	double monte_carlo_area = 0;
 	double gaussian_area = 0;
 	double gaussian_area_one_interval = 0;
+	double gaussian_area_4points = 0;
 
 	double width = (b - a) / n;
 
@@ -68,6 +70,19 @@ void RiemannSum(double a, double b, double n)
 	double t2_one_interval = (a + b) / 2 + x2 * (b - a) / 2;
 	//gaussian quadrature rule (2nodes) variables END
 
+	//gaussian quadrature rule (4 points) variables START
+	//points:
+	double d1 = -(1.0 / 35)*sqrt(525 + 70 * sqrt(30));
+	double d2 = -(1.0 / 35)*sqrt(525 - 70 * sqrt(30));
+	double d3 = (1.0 / 35)*sqrt(525 - 70 * sqrt(30));
+	double d4 = (1.0/ 35)*sqrt(525 + 70 * sqrt(30));
+	//weights:
+	double B1 = (1.0 / 36) * (18 - sqrt(30));
+	double B2 = (1.0 / 36)*(18 + sqrt(30));
+	double B3 = (1.0 / 36)*(18 + sqrt(30));
+	double B4 = (1.0 / 36)*(18 - sqrt(30));
+	//gaussian quadrature rule (4 points) variables END
+
 
 	//monte carlo pseudorandom numbers.
 	double r1, r2, r3, f_r_avg= 0;
@@ -77,7 +92,7 @@ void RiemannSum(double a, double b, double n)
 		trapezoid_area += width * (func4(a + i * width) + func4(a + (i+1)* width)) / 2;
 
 		//simpson rule
-		simpson_area += (width) / 6 * (func4(a + i * width) + 4 * func4((a + i * width + a + (i + 1)*width) / 2) + func4(a + (i + 1)*width));
+		simpson_area += (width) / 6 * (func4(a + i * width) + 4 * func4((2*a+(2*i + 1)*width) / 2) + func4(a + (i + 1)*width)) ;
 
 		//monte carlo rule
 		r1 = width * ((double)rand() / (double)RAND_MAX) + a + i * width;
@@ -87,9 +102,20 @@ void RiemannSum(double a, double b, double n)
 		f_r_avg = (func4(r1) + func4(r2) + func4(r3)) / 3;
 		monte_carlo_area += width * f_r_avg;
 
-		double t1 = (2*a+(2*i+1)*width) / 2 + x1 * (width) / 2;
+		//2 points
+		double t1 = (2 * a + (2 * i + 1)*width) / 2 + x1 * (width) / 2;
 		double t2 = (2 * a + (2 * i + 1)*width) / 2 + x2 * (width) / 2;
 		gaussian_area += width/2 * (func4(t1)+func4(t2));
+
+		//4 points
+		double p1 = (2 * a + (2 * i + 1)*width) / 2 + d1 * (width) / 2;
+		double p2 = (2 * a + (2 * i + 1)*width) / 2 + d2 * (width) / 2;
+		double p3 = (2 * a + (2 * i + 1)*width) / 2 + d3 * (width) / 2;
+		double p4 = (2 * a + (2 * i + 1)*width) / 2 + d4 * (width) / 2;
+		gaussian_area_4points += width / 2 * (func4(p1)*B1 + func4(p2)*B2 + func4(p3)*B3 + func4(p4)*B4);
+
+
+
 	}
 	simpson_area_one_interval = (b - a) / 6 * (func4(a) + 4 * func4((a + b) / 2) + func4(b));
 	gaussian_area_one_interval = (b - a) / 2 * (func4(t1_one_interval) + func4(t2_one_interval));
@@ -101,7 +127,8 @@ void RiemannSum(double a, double b, double n)
 	cout << "Simpson rule area(one interval only)=" << simpson_area_one_interval << endl;
 	cout << "Simpson rule area=" << simpson_area << endl;
 	cout << "Monte Carlo rule area=" << monte_carlo_area << endl;
-	cout << "Gaussian quadrature rule area(one interval only)=" << gaussian_area_one_interval << endl;
-	cout << "Gaussian quadrature rule area=" << gaussian_area << endl;
+	cout << "Gaussian quadrature rule area(one interval only)(2 points)=" << gaussian_area_one_interval << endl;
+	cout << "Gaussian quadrature rule area(2 points)=" << gaussian_area << endl;
+	cout << "Gaussian quadrature rule area(4 points)=" << gaussian_area_4points << endl;
 	//Trapezoidal Rule
 }
