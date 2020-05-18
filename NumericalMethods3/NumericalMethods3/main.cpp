@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	RiemannSum(-0.5, 2, 15);
+	RiemannSum(-0.5, 2, 9);
 
 	system("pause");
 	return 0;
