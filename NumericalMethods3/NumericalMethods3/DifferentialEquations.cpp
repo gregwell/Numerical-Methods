@@ -28,12 +28,18 @@ void solveDE(double xp, double yp, int n, double xk) {
 	cout << "Warunek poczatkowy: y(" << xp << ")=" << yp << ", krok obliczen h=" << h << ", x koncowe xk=" << xk << endl;
 
 	//euler
-	while ((xk - xp) > h / 2.0) {
-		v = yp + (h * de1(xp, yp));
-		yp = v;
-		xp += h;
-		cout << "v(" << xp << ")=" << v << endl;
+		//euler
+	double a = xp;
+	double b = xk;
+	double c = yp;
+	while ((b - a) > h / 2.0) {
+		v = c + (h * de1(a, c));
+		c = v;
+		a += h;
+		cout << "v(" << a << ")=" << v << endl;
 	}
-	cout << "Rozwiazanie dla y(" << xk << ") to " << v << endl;
+	cout << "Rozwiazanie dla y(" << a << ") to " << v << endl;
+
+
 
 }
