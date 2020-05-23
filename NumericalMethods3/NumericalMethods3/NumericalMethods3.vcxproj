@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bisection.h" />
+    <ClInclude Include="DifferentialEquations.h" />
     <ClInclude Include="GaussElimination.h" />
     <ClInclude Include="Integration.h" />
     <ClInclude Include="Jacobi.h" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bisection.cpp" />
+    <ClCompile Include="DifferentialEquations.cpp" />
     <ClCompile Include="GaussElimination.cpp" />
     <ClCompile Include="Integration.cpp" />
     <ClCompile Include="Jacobi.cpp" />

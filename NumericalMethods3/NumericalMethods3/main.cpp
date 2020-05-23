@@ -1,14 +1,15 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include <cmath>
-#include "Integration.h"
+#include "DifferentialEquations.h"
 
 using namespace std;
 
 
 int main()
 {
-	RiemannSum(-0.5, 8, 1);
+	// y(xp) = yp ~ warunek poczatkowy // h ~krok obliczen // xk ~x koncowe
+	solveDE(0, 0.1, 3, 0.3);
 
 	system("pause");
 	return 0;
