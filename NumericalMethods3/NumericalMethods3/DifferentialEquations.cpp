@@ -55,7 +55,6 @@ void solveDE(double xp, double yp, int n, double xk) {
 	}
 	cout << "Rozwiazanie RK2 dla y(" << xp << ") to " << yp << endl;
 
-
 	//RK4
 	double p1;
 	double p2;
@@ -74,6 +73,5 @@ void solveDE(double xp, double yp, int n, double xk) {
 		cout << "v(" << xp_t << ")=" << yp_t << endl;
 	}
 	cout << "Rozwiazanie RK4 dla y(" << xp_t << ") to " << yp_t << endl;
-
 
 }

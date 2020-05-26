@@ -8,7 +8,8 @@ using namespace std;
 
 int main()
 {
-	// y(xp) = yp ~ warunek poczatkowy // h ~krok obliczen // xk ~x koncowe
+	// yp(xp) = yp ~ warunek poczatkowy // h ~krok obliczen // xk ~x koncowe
+	//kolejnosc: xp,yp,h,xk
 	solveDE(0, 0.1, 3, 0.3);
 
 	system("pause");
